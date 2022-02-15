@@ -1,0 +1,53 @@
+#include <stdio.h>
+#define M 5
+int main()
+{
+    int top=-1,stack[M],element;
+    int n,ch=1;
+    while(ch)
+    {
+    printf("\n 1)Push 2)pop 3display 4)Exit \n");
+    scanf("%d",&n);
+    switch(n)
+    {
+       case 1:
+       if(top==M-1)
+       printf("overflow");
+       else
+       {
+           printf("\n enter the number \n");
+           scanf("%d",&element);
+           top=top+1;
+           stack[top]=element;
+           printf("\n element entered successfully \n");
+       }
+       break;
+       
+       case 2:
+       if(top==-1)
+       printf("underflow");
+       else
+       {
+           top=top-1;
+       }
+         printf("\n element deleted successfully \n");
+        break;
+        
+       case 3:
+       if(top==-1)
+       printf("Underflow");
+       else
+       for(int i=0;i<=top;i++)
+       printf("%d ",stack[i]);
+        break;
+        
+       default:
+       ch=0;
+       break;
+        
+        
+        
+    }
+    }
+}
+

@@ -1,0 +1,201 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *link;
+};
+
+struct node *head=NULL,*temp,*newnode;
+void ibegin();
+void iend();
+void iatany();
+void display();
+void dbegin();
+void dend();
+void dany();
+
+void main()
+{
+  int ch,flag=0;
+  while(flag==0)
+  {
+      printf("\nCHOOSE THE POSITION TO INSERT:\n");
+      printf("1.Insertion at Front\n2.Insertion at End\n3.Isertion at any position\n4.Deletion at begining\n5.Deletion at end \n6.Deletion at any position\n7.Display\n8.Exit\n");
+      scanf("%d",&ch);
+      switch(ch)
+      {
+        case 1: ibegin();
+                break;
+        case 2: iend();
+                break;
+        case 3: iatany();
+                break;
+        case 4: dbegin();
+                break;
+        case 5: dend();
+                break;
+        case 6: dany();
+                break;
+        case 7: display();
+                break;
+        case 8: flag=1; 
+                break;
+        default: printf("\nInvalid choice\n");
+
+      }
+  }
+}
+
+void iatany()
+{
+    temp=(struct node *)malloc(sizeof(struct node));
+    int n,key;
+    printf("Enter the value to be inserted:\n");
+    scanf("%d",&n); 
+    printf("Enter the value of key after which the node is to be inserted:\n");
+    scanf("%d",&key);
+    newnode=head;
+    while((newnode->data!=key)&&(newnode->link!=NULL))
+    {
+        newnode=newnode->link;
+    }
+    if(newnode->link==NULL)
+    printf("\nSEARCH FAILED\n");
+    else
+    {
+        temp->link=newnode->link;
+        newnode->link=temp;
+        temp->data=n;
+    }
+}
+
+
+void ibegin()
+{
+    temp=(struct node *)malloc(sizeof(struct node));
+    int n;
+    printf("Enter the value to be inserted:\n");
+    scanf("%d",&n);
+    if(temp==NULL)
+    printf("\nMEMORY UNDERFLOW\n");
+    else 
+    {
+    temp->data=n;
+    temp->link=head;
+    head=temp;
+    }
+}
+
+
+void iend()
+{
+    temp=(struct node *)malloc(sizeof(struct node));
+    int n;
+    printf("Enter the value to be inserted:\n");
+    scanf("%d",&n);
+    temp->data=n;
+    temp->link=NULL;
+    if(head==NULL)
+    head=temp;
+    else
+    {
+        newnode=head;
+        while(newnode->link!=NULL)
+        newnode=newnode->link;
+        newnode->link=temp;
+    }
+    
+}
+
+
+void dbegin()
+{
+   if(head == NULL)
+	printf("\n\nUnderflow\n");
+   else
+   {
+      struct node *temp = head;
+      if(head->link == NULL)
+      {
+	 head = NULL;
+	 free(temp);
+      }
+      else
+      {
+	head = temp->link;
+	free(temp);
+	printf("\nNode deleted\n\n");
+      }
+   }
+}
+
+
+void dend()
+{
+   if(head == NULL)
+   {
+      printf("\nUnderflow\n");
+   }
+   else
+   {
+      struct node *current = head,*prev;
+      if(head->link == NULL)
+	head = NULL;
+      else
+      {
+	 while(current->link != NULL)
+	 {
+	    prev = current;
+	    current = current->link;
+	 }
+	 prev->link = NULL;
+      }
+      printf("\nNode deleted\n\n");
+   }
+}
+
+
+void dany()
+{   int value;
+    printf("Enter the value to be deleted: ");
+    scanf("%d",&value);
+   struct node *current = head, *prev;
+   while((current->data != value)&&(current->link != NULL))
+   {
+      prev = current;
+      current = current->link;
+   }
+   if(current->link==NULL)
+   {
+    printf("\nSEARCH FAILED\n");
+   }
+   else
+    {
+        prev->link=current->link;
+        printf("\n Node deleted\n\n");
+    }
+
+}
+
+
+void display()
+{
+   if(head == NULL)
+   {
+      printf("\nUnderflow\n");
+   }
+   else
+   {
+      struct node *temp = head;
+      printf("\n\nList elements are - \n");
+      while(temp->link != NULL)
+      {
+	 printf("%d --->",temp->data);
+	 temp = temp->link;
+      }
+      printf("%d --->NULL",temp->data);
+   }
+}
+
