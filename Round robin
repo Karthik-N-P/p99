@@ -1,3 +1,25 @@
+#include<stdio.h>
+
+#include<conio.h>
+
+int TRUE = 0;
+int FALSE = -1;
+int tbt[30],bt[30],tat[30],n=0,wt[30],qt=0,tqt=0,time=0,lmore,t_tat=0,t_wt=0;
+void main()
+{
+int i,j;
+clrscr();
+printf("\nEnter no. of processors:");
+scanf("%d",&n);
+printf("\nEnter Quantum Time:");
+scanf("%d",&qt);
+for(i=0;i<n;i++)
+{
+printf("\nEnter Burst Time of Processor[%d]:",i+1);
+scanf("%d",&bt[i]);
+tbt[i] = bt[i];
+wt[i] = tat[i] = 0;
+}
 lmore = TRUE;
 while(lmore == TRUE)
 {
@@ -29,9 +51,16 @@ printf("\nAverage Turn Around Time:%d",t_tat/n);
 printf("\nTotal Waiting Time:%d",t_wt);
 printf("\nAverage Waiting Time:%d",t_wt/n);
 getch();
+
+
+
+
+
 }
 
 
+
+//LFU
 #include<stdio.h>
 void print(int frameno,int frame[])
 {
